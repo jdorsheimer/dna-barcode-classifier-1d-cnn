@@ -1,4 +1,4 @@
-# DNA Barcode Classifier using 1D-CNNs
+# DNA Barcode Classifier using 1D-CNN
 
 This repository contains code for a 1D-CNN to classify species from DNA barcodes. The DNA barcodes are first one-hot encoded, and then processed by the 1D-CNN to predict the species or taxa.
 
