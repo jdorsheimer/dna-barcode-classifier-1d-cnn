@@ -1,3 +1,4 @@
+
 # one-hot encoding of DNA barcode into a 2D matrix
 def one_hot_encode_2d(sequence):
     import numpy as np
@@ -13,10 +14,7 @@ def one_hot_encode_1d(sequence):
     return encoding.flatten().tolist()
 
 # create tensor from one-hot encoding
-def to_tensor(barcode_list):
+def to_tensor(sequence):
     import torch
-    encoded_list = [one_hot_encode(barcode) for barcode in barcode_list]
+    return torch.tensor(sequence).float()
     return torch.stack(encoded_list)
-
-#barcode_list = ['AGCT', 'CGTA', ...]
-#barcode_tensor = to_tensor(barcode_list)
