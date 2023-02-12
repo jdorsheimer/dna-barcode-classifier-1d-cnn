@@ -1,6 +1,13 @@
 import torch
 
-# one-hot encoding of DNA barcode
+# one-hot encoding of DNA barcode without torch
+def one_hot_encode(barcode):
+    alphabet = 'ACGT'
+    encoding = [0, 0, 0, 0] * (len(barcode)//4 + 1)
+    encoding = [1 if base == alphabet[i % 4] else 0 for i, base in enumerate(barcode)]
+    return encoding[:4 * len(barcode)]
+
+# one-hot encoding of DNA barcode with torch
 def one_hot_encode(barcode):
     alphabet = 'ACGT'
     encoding = [alphabet.index(base) for base in barcode]
