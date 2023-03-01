@@ -36,64 +36,6 @@ def fasta_to_dataframe(file_path):
     columns = [f'specimen_data_{str(i+1).zfill(3)}' for i in range(len(metadata))]
     return pd.DataFrame(data, columns=['Sampleid', 'Sequence', *columns])
 
-# def df_to_2d_tensor(dataframe):
-#     from utilities.tensor_utils import one_hot_encode_1d
-#     sequences = dataframe['Sequence']
-#     encodings = []
-#     for sequence in sequences:
-#         encoding = one_hot_encode_1d(sequence)
-#         encodings.append(encoding)
-#     return torch.tensor(encodings)
-
-# def df_to_2d_tensor(dataframe, max_length=None, pad_value='N'):
-#     from utilities.tensor_utils import one_hot_encode_1d
-#     sequences = dataframe['Sequence']
-#     encodings = []
-#     for sequence in sequences:
-#         encoding = one_hot_encode_1d(sequence)
-#         if max_length is not None and len(encoding) < max_length:
-#             padding_length = max_length - len(encoding)
-#             left_padding_length = padding_length // 2
-#             right_padding_length = padding_length - left_padding_length
-#             left_padding = np.array([one_hot_encode_1d(pad_value)] * left_padding_length)
-#             right_padding = np.array([one_hot_encode_1d(pad_value)] * right_padding_length)
-#             encoding = np.concatenate([left_padding, encoding, right_padding])
-#         encodings.append(encoding)
-#     return torch.tensor(encodings)
-
-
-
-# def df_to_2d_tensor(dataframe, max_length=None, pad_value='N'):
-#     from utilities.tensor_utils import one_hot_encode_1d
-#     sequences = dataframe['Sequence']
-#     encodings = []
-#     for sequence in sequences:
-#         encoding = one_hot_encode_1d(sequence)
-#         if max_length is not None and len(encoding) < max_length:
-#             padding_length = max_length - len(encoding)
-#             left_padding_length = padding_length // 2
-#             right_padding_length = padding_length - left_padding_length
-#
-#             # Check if the total padding length will make the sequence longer than max_length
-#             if len(encoding) + left_padding_length + right_padding_length > max_length:
-#                 padding_length = max_length - len(encoding)
-#                 left_padding_length = padding_length // 2
-#                 right_padding_length = padding_length - left_padding_length
-#
-#             left_padding = np.array([one_hot_encode_1d(pad_value)] * left_padding_length)
-#             right_padding = np.array([one_hot_encode_1d(pad_value)] * right_padding_length)
-#             encoding = np.concatenate([left_padding, encoding, right_padding])
-#
-#             # If the length of the padded sequence is still less than max_length, add extra padding to the right
-#             if len(encoding) < max_length:
-#                 extra_padding_length = max_length - len(encoding)
-#                 extra_padding = np.array([one_hot_encode_1d(pad_value)] * extra_padding_length)
-#                 encoding = np.concatenate([encoding, extra_padding])
-#
-#         encodings.append(encoding)
-#     return torch.tensor(encodings)
-
-
 def df_to_tensor(df, max_length):
     from utilities.tensor_utils import one_hot_encode_1d
     # Convert sequences to one-hot encoding and pad them to the maximum length
