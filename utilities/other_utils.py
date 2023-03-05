@@ -5,7 +5,7 @@ def unique_char_counts(df, col_name):
     returns a dictionary containing each unique character in the sequence
     and their total counts.
     """
-    # Get the sequence column as a Series
+    # Get the sequence column as a Series.
     seq_series = df[col_name]
     # Concatenate all sequences into a single string
     all_seq_str = ''.join(seq_series)
